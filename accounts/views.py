@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import permissions
 
 from .serializers import CustomUserSerializer
 
@@ -13,7 +14,7 @@ User = get_user_model()
 class UserProfileViewSet(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = []
+    permission_classes = [permissions.AllowAny]
 
 
 class ConfirmEmailView(generics.GenericAPIView):
