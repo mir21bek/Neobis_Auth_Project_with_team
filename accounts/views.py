@@ -6,14 +6,19 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import CustomUserSerializer
-
+from rest_framework import permissions
 User = get_user_model()
 
 
 class UserProfileViewSet(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = []
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        if self.request.user.is_active:
+            return User.objects.filter(is_active=True)
+        return User.objects.none()
 
 
 class ConfirmEmailView(generics.GenericAPIView):
