@@ -1,11 +1,14 @@
-version: '3.10'
+version: '3'
+
 services:
-  web:
-    image: neobis-auth-project-image
-    ports:
-      - "8000:8000"
+  sqlite3:
+    container_name: sqlite3_container
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
     volumes:
-      - /home/user/PycharmProjects/Neobis_Auth_Project_with_team:/app
-      - /home/user/PycharmProjects/Neobis_Auth_Project_with_team/db.sqlite3:/app/db.sqlite3
-    env_file:
-      - /home/user/PycharmProjects/Neobis_Auth_Project_with_team/.env
+      #Modify following line
+      - path-to/your/databases/sqlite3:/root/db/
+    ports:
+      - '9000:9000' # expose ports - HOST:CONTAINER
+    restart: unless-stopped
