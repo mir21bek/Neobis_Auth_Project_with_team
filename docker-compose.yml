@@ -1,0 +1,11 @@
+version: '3.10'
+services:
+  web:
+    image: neobis-auth-project-image
+    ports:
+      - "8000:8000"
+    volumes:
+      - /home/user/PycharmProjects/Neobis_Auth_Project_with_team:/app
+      - /home/user/PycharmProjects/Neobis_Auth_Project_with_team/db.sqlite3:/app/db.sqlite3
+    env_file:
+      - /home/user/PycharmProjects/Neobis_Auth_Project_with_team/.env
