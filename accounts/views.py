@@ -3,11 +3,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-<<<<<<< HEAD
-=======
 from rest_framework import permissions
 
->>>>>>> 8b0d891e9d584c70be0572167e6e5128ed5d8fc5
 from .serializers import CustomUserSerializer
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
@@ -17,10 +14,6 @@ User = get_user_model()
 class UserProfileViewSet(generics.ListCreateAPIView):
     serializer_class = CustomUserSerializer
     permission_classes = [permissions.AllowAny]
-<<<<<<< HEAD
-=======
-
->>>>>>> 8b0d891e9d584c70be0572167e6e5128ed5d8fc5
 
     def get_queryset(self):
         return User.objects.filter(is_superuser=False)
